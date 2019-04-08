@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -67,7 +68,7 @@ public class MovingViolationsManager {
 	}
 	
 	public void load() {
-		String[] archivos = new String[12];
+		String[] archivos = new String[6];
 		for(int i = 0; i < 6; i++){
 			if(i == 0){archivos[i] = DATOS_MES_1;}
 			else if(i==1){archivos[i] = DATOS_MES_2;}
@@ -82,17 +83,17 @@ public class MovingViolationsManager {
 		
 		for(int i = 0; i < 6; i++) {
 			fileName = archivos[i];
-			nInfracciones[i+1] = loadMovinViolations(fileName);
+			nInfracciones[i] = loadMovinViolations(fileName);
 		}
 		
 		System.out.println("El total de infracciones del semestre es:" + movingViolationsRB.size());
 		
-		System.out.println("El número de infracciones de Enero es:" + nInfracciones[1]);
-		System.out.println("El número de infracciones de Febrero es:" + nInfracciones[2]);
-		System.out.println("El número de infracciones de Marzo es:" + nInfracciones[3]);
-		System.out.println("El número de infracciones de Abril es:" + nInfracciones[4]);
-		System.out.println("El número de infracciones de Mayo es:" + nInfracciones[5]);
-		System.out.println("El número de infracciones de Junio es:" + nInfracciones[6]);
+		System.out.println("El número de infracciones de Enero es:" + nInfracciones[0]);
+		System.out.println("El número de infracciones de Febrero es:" + nInfracciones[1]);
+		System.out.println("El número de infracciones de Marzo es:" + nInfracciones[2]);
+		System.out.println("El número de infracciones de Abril es:" + nInfracciones[3]);
+		System.out.println("El número de infracciones de Mayo es:" + nInfracciones[4]);
+		System.out.println("El número de infracciones de Junio es:" + nInfracciones[5]);
 	}
 	
 	public int loadMovinViolations(String pJson) {
@@ -104,94 +105,95 @@ public class MovingViolationsManager {
 			Iterator iter = array.iterator();
 			
 			while(iter.hasNext()) {
-				JsonObject object = (JsonObject) array.get(i);
+				JsonElement obj = (JsonElement) iter.next();
+				JsonObject object = obj.getAsJsonObject();
 				
-				String objectId = " ";
+				int objectId = 0;
 				if(object.get("OBJECTID") != null) {
-					objectId = object.get("OBJECTID").toString();
+					objectId = object.get("OBJECTID").getAsInt();
 				}
 				
 				String row = " ";
 				if(object.get("ROW_") != null) {
-					row = object.get("ROW_").toString();
+					row = object.get("ROW_").getAsString();
 				}
 				
 				String location = " ";
 				if(object.get("LOCATION") != null) {
-					location = object.get("LOCATION").toString();
+					location = object.get("LOCATION").getAsString();
 				}
 				
-				String addressId = " ";
+				int addressId = 0;
 				if(object.get("ADDRESS_ID") != null) {
-					addressId = object.get("ADDRESS_ID").toString();
+					addressId = object.get("ADDRESS_ID").getAsInt();
 				}
 				
-				String streetSegId = " ";
+				int streetSegId = 0;
 				if(object.get("STREETSEGID") != null) {
-					streetSegId = object.get("STREETSEGID").toString();
+					streetSegId = object.get("STREETSEGID").getAsInt();
 				}
 				
-				String xCoord = " ";
+				double xCoord = 0.0;
 				if(object.get("XCOORD") != null) {
-					xCoord = object.get("XCOORD").toString();
+					xCoord = object.get("XCOORD").getAsDouble();
 				}
 				
-				String yCoord = " ";
+				double yCoord = 0.0;
 				if(object.get("YCOORD") != null) {
-					yCoord = object.get("YCOORD").toString();
+					yCoord = object.get("YCOORD").getAsDouble();
 				}
 				
 				String ticketType = " ";
 				if(object.get("TICKETTYPE") != null) {
-					ticketType = object.get("TICKETTYPE").toString();
+					ticketType = object.get("TICKETTYPE").getAsString();
 				}
 				
-				String fineAMT = " ";
+				int fineAMT = 0;
 				if(object.get("FINEAMT") != null) {
-					fineAMT = object.get("FINEAMT").toString();
+					fineAMT = object.get("FINEAMT").getAsInt();
 				}
 				
-				String totalPaid = " ";
+				int totalPaid = 0;
 				if(object.get("TOTALPAID") != null) {
-					totalPaid = object.get("TOTALPAID").toString();
+					totalPaid = object.get("TOTALPAID").getAsInt();
 				}
 				
-				String penalty1 = " ";
+				int penalty1 = 0;
 				if(object.get("PENALTY1") != null) {
-					penalty1 = object.get("PENALTY1").toString();
+					penalty1 = object.get("PENALTY1").getAsInt();
 				}
 				
-				String penalty2 = " ";
+				int penalty2 = 0;
 				if(object.get("PENALTY2") != null) {
-					penalty2 = object.get("PENALTY2").toString();
+					penalty2 = object.get("PENALTY2").getAsInt();
 				}
 				
 				String accidentIndicator = " ";
 				if(object.get("ACCIDENTINDICATOR") != null) {
-					accidentIndicator = object.get("ACCIDENTINDICATOR").toString();
+					accidentIndicator = object.get("ACCIDENTINDICATOR").getAsString();
 				}
 				
 				String ticketIssueDate = " ";
 				if(object.get("TICKETISSUEDATE") != null) {
-					ticketIssueDate = object.get("TICKETISSUEDATE").toString();
+					ticketIssueDate = object.get("TICKETISSUEDATE").getAsString();
 				}
 				
 				String violationCode = " ";
 				if(object.get("VIOLATIONCODE") != null) {
-					violationCode = object.get("VIOLATIONCODE").toString();
+					violationCode = object.get("VIOLATIONCODE").getAsString();
 				}
 				
 				String violationDesc = " ";
 				if(object.get("VIOLATIONDESC") != null) {
-					violationDesc = object.get("VIOLATIONDESC").toString();
+					violationDesc = object.get("VIOLATIONDESC").getAsString();
 				}
 				
-				String rowId = " ";
+				int rowId = 0;
 				if(object.get("ROW_ID") != null) {
-					rowId = object.get("ROW_ID").toString();
+					rowId = object.get("ROW_ID").getAsInt();
 				}
 				
-				movingViolationsRB.put(Integer.parseInt(objectId), new VOMovingViolations(Integer.parseInt(objectId), location, Integer.parseInt(addressId), Integer.parseInt(streetSegId), Integer.parseInt(xCoord), Integer.parseInt(yCoord), ticketType, Integer.parseInt(fineAMT), Integer.parseInt(totalPaid), Integer.parseInt(penalty1), Integer.parseInt(penalty2), accidentIndicator, ticketIssueDate, violationCode, violationDesc, Integer.parseInt(rowId)));
+				movingViolationsRB.put(objectId, new VOMovingViolations(objectId, location, addressId, streetSegId, xCoord, yCoord, ticketType, fineAMT, totalPaid, penalty1, penalty2, accidentIndicator, ticketIssueDate, violationCode, violationDesc, rowId));
 				
 				iter.next();
 				i++;
@@ -202,5 +204,15 @@ public class MovingViolationsManager {
 		}
 		
 		return i+1;
+	}
+	
+	/**
+	 * Consulta la información asociada a un valor ObjectId.
+	 * @param pObjectId Identificador de la infraccion.
+	 * @return VOMovingViolations Informacion de la infraccion.
+	 */
+	public VOMovingViolations searchInfoMovingViolation(int pObjectId) {
+		VOMovingViolations x = movingViolationsRB.get(pObjectId);
+		return x;
 	}
 }

@@ -100,7 +100,7 @@ public class VOMovingViolations  implements Comparable<VOMovingViolations>{
 	
 	//Constructor
 	
-	public VOMovingViolations( int pObjectId, String pLocation, int pAddrresId, int pStreetSegId,int pXCoord, int pYCoord, String pTicketType, int pSumaFINEAMT, int pTotalPaid, int pPenal1, int pPenal2, String pAccidentIndicator, String pTicketIssueDate, String pViolationCode, String pViolationDescription, int pRowId) throws ParseException
+	public VOMovingViolations( int pObjectId, String pLocation, int pAddrresId, int pStreetSegId,double pXCoord, double pYCoord, String pTicketType, int pSumaFINEAMT, int pTotalPaid, int pPenal1, int pPenal2, String pAccidentIndicator, String pTicketIssueDate, String pViolationCode, String pViolationDescription, int pRowId) throws ParseException
 	{
 		// TODO Implementar
 		objectId = pObjectId;
@@ -139,7 +139,7 @@ public class VOMovingViolations  implements Comparable<VOMovingViolations>{
 	 */
 	public int objectId() {
 		// TODO Auto-generated method stub
-		return 0;
+		return objectId;
 	}	
 	
 	
@@ -148,15 +148,15 @@ public class VOMovingViolations  implements Comparable<VOMovingViolations>{
 	 */
 	public String getLocation() {
 		// TODO Auto-generated method stub
-		return "";
+		return rowLocation;
 	}
 
 	/**
 	 * @return date - Fecha cuando se puso la infracción .
 	 */
-	public String getTicketIssueDate() {
+	public Date getTicketIssueDate() {
 		// TODO Auto-generated method stub
-		return "";
+		return ticketIssueDate;
 	}
 	
 	/**
@@ -164,7 +164,7 @@ public class VOMovingViolations  implements Comparable<VOMovingViolations>{
 	 */
 	public int getTotalPaid() {
 		// TODO Auto-generated method stub
-		return 0;
+		return totalPaid;
 	}
 	
 	/**
@@ -172,7 +172,7 @@ public class VOMovingViolations  implements Comparable<VOMovingViolations>{
 	 */
 	public String  getAccidentIndicator() {
 		// TODO Auto-generated method stub
-		return "";
+		return accidentIndicator;
 	}
 		
 	/**
@@ -180,21 +180,29 @@ public class VOMovingViolations  implements Comparable<VOMovingViolations>{
 	 */
 	public String  getViolationDescription() {
 		// TODO Auto-generated method stub
-		return "";
+		return violationDesc;
 	}
 	
-	public String getStreetSegId() {
-		return "";
+	public int getStreetSegId() {
+		return streetSegId;
 	}
 	
-	public String getAddressId() {
-		return "";
+	public int getAddressId() {
+		return addresId;
 	}
-
+	
+	public double getXCoord() {
+		return xCoord;
+	}
+	
+	public double getYCoord() {
+		return yCoord;
+	}
 
 	@Override
-	public int compareTo(VOMovingViolations arg0) {
+	public int compareTo(VOMovingViolations o) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
 }

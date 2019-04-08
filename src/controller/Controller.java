@@ -77,15 +77,24 @@ public class Controller {
 
 		while(!fin){
 			view.printMenu();
-
 			int option = sc.nextInt();
 
 			switch(option){
 
 			case 0:
+				model.load();
 				break;
 
 			case 1:
+				view.printMessage("Ingrese el id de la infracción: ");
+				int id = sc.nextInt();
+				VOMovingViolations x = model.searchInfoMovingViolation(id);
+				view.printMessage("Información infracción No." + id + ": ");
+				view.printMessage("Location: " + x.getLocation());
+				view.printMessage("Address Id: " + x.getAddressId());
+				view.printMessage("Street Seg Id: " + x.getStreetSegId());
+				view.printMessage("XCoord" + x.getXCoord());
+				view.printMessage("YCoord" + x.getYCoord());
 				break;
 
 			case 2:
