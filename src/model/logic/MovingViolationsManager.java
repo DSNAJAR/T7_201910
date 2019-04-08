@@ -12,6 +12,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import controller.ObjectId;
 import model.data_structures.DoubleLinkedList;
 import model.data_structures.RedBlackBST;
 import model.vo.VOMovingViolations;
@@ -214,5 +215,19 @@ public class MovingViolationsManager {
 	public VOMovingViolations searchInfoMovingViolation(int pObjectId) {
 		VOMovingViolations x = movingViolationsRB.get(pObjectId);
 		return x;
+	}	
+	
+	/**
+	 * Consulta los ObjectsID registrados en un rango dado por ObjectID menor y ObjectID mayor
+	 * Por cada ObjectID existente dentro del rango se muestra la información correspondiente a esta 
+	 * @param iDMenor Identificador que define el inicio del rango de busqueda
+	 * @param iDMayor Identificador que define el final del rango de busqueda. iDMayor >= iDMenor
+	 * 
+	 */
+	public Iterator<Integer> registeredInRange (int iDMenor, int iDMayor)
+	{
+		Iterator<Integer> estan = movingViolationsRB.keysInRange(iDMenor, iDMayor);
+		
+		return estan;
 	}
 }
